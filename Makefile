@@ -1,4 +1,5 @@
 .RECIPEPREFIX = ;
+.PHONY: all clean parser parser.tab.h lex.yy.c
 
 all: parser
 
