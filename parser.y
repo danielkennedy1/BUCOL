@@ -8,11 +8,6 @@ extern void yyerror(char *s);
 %token ENDSTMT BEGINING BODY END CAPACITY ID TO MOVE ADD INPUT PRINT INTLITERAL
 %%
 
-// sentence: ARTICLE NOUN VERB ARTICLE NOUN
-// {
-//     printf("Is a valid Sentence!\n");
-// }
-
 declaration: CAPACITY ID ENDSTMT
 {
     printf("Declaration is valid!\n");

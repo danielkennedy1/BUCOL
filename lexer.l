@@ -23,7 +23,7 @@ X+ return(CAPACITY);
 "INPUT" return(INPUT);
 "PRINT" return(PRINT);
 
-[A-Za-z][^ .]* return(ID);
+[A-Za-z][^.]* return(ID);
 
 [0-9]+ return(INTLITERAL);
 
