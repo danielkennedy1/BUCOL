@@ -1,7 +1,11 @@
+COMMANDS:
 flex lexer.l
 bison -d parser.y
 gcc lex.yy.c parser.tab.c -o parser
 ./parser
+
+Nice reference for flex:
+https://westes.github.io/flex/manual/Patterns.html#Patterns
 
 PROJECT SPEC BELOW THIS LINE
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
