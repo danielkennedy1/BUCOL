@@ -27,7 +27,7 @@ Language Syntax:
 
  
 
-The language is not case sensitive.
+The language is not case sensitive. - 
 Programs are monolithic starting with the keyword “BEGINING.
 ” and ending with the keyword "END.
 ” (The periods are important) 
@@ -63,7 +63,9 @@ XXXXX U6787-77.
 
  
 
-After the declarations, comes the main body of code, signified by the keyword "BODY.". This body of code consists of one or more statements after this keyword. The program ends with the "END." statement. 
+After the declarations, comes the main body of code, signified by the keyword "BODY.".
+This body of code consists of one or more statements after this keyword.
+The program ends with the "END." statement. 
 
  
 
@@ -95,7 +97,8 @@ INPUT identifier1; identifier2; identifier3.
 
  
 
-This read statement above will take in 3 values which will be held in the variables identified by identifier1, identifier 2 and identifier3. However read statements are not just limited to taking in 3 values. They may take in any number of values required by the program. 
+This read statement above will take in 3 values which will be held in the variables identified by identifier1, identifier 2 and identifier3.
+However read statements are not just limited to taking in 3 values. They may take in any number of values required by the program. 
 
  
 
@@ -107,7 +110,8 @@ PRINT “I’m printed out”; identifier1.
 
  
 
-It starts with the keyword ‘Print’ and then contains any combinations of either identifiers or text (enclosed in quotation marks), separated by semi-colons. The print statement above prints out the string ‘I’m printed out’, followed by whatever value is held by identifier 1. 
+It starts with the keyword ‘Print’ and then contains any combinations of either identifiers or text (enclosed in quotation marks), separated by semi-colons.
+The print statement above prints out the string ‘I’m printed out’, followed by whatever value is held by identifier 1. 
 
  
 
@@ -173,7 +177,7 @@ ADD Y TO Z.
 
 PRINT XY;” + “;Y;”=”;Z. 
 
- 
+
 
 END. 
 

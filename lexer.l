@@ -1,18 +1,33 @@
+%option case-insensitive
+%option debug
+
 %{
-/* this demonstrates (very) simple recognition of a sentence */
 #include "parser.tab.h" /* token definitions from the parser */
+#include <ctype.h>
 %}
 
 %%
-[\t ]+ /* ignore whitespace */ ;
-"cat" |
-"dog" |
-"mouse" return(NOUN);
-"ate" |
-"hit" return(VERB);
-"the" |
-"a" return(ARTICLE);
-[a-zA-Z]+ |
+[ \t\n] ;
+
+"." return(ENDSTMT);
+
+"BEGINING" return(BEGINING);
+"BODY" return(BODY);
+"END" return(END);
+
+X+ return(CAPACITY);
+
+"TO" return(TO);
+"MOVE" return(MOVE);
+"ADD" return(ADD);
+"INPUT" return(INPUT);
+"PRINT" return(PRINT);
+
+[A-Za-z][^ .]* return(ID);
+
+[0-9]+ return(INTLITERAL);
+
+
 . return(0);
 %%
 

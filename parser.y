@@ -1,4 +1,3 @@
-/* Limited sentence recognizer */
 %{
 #include<stdio.h>
 extern int yylex();
@@ -6,14 +5,18 @@ extern int yyparse();
 extern void yyerror(char *s);
 %}
 
-%token NOUN VERB ARTICLE
-
+%token ENDSTMT BEGINING BODY END CAPACITY ID TO MOVE ADD INPUT PRINT INTLITERAL
 %%
 
-sentence: ARTICLE NOUN VERB ARTICLE NOUN
+// sentence: ARTICLE NOUN VERB ARTICLE NOUN
+// {
+//     printf("Is a valid Sentence!\n");
+// }
+
+declaration: CAPACITY ID ENDSTMT
 {
-    printf("Is a valid Sentence!\n");
-}
+    printf("Declaration is valid!\n");
+} 
 
 %%
 
