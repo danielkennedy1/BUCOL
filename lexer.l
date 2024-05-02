@@ -30,7 +30,7 @@ CHAR [A-Za-z1-9-]
 [A-WYZa-wyz]{CHAR}* |
 [Xx]{CHAR}*[^Xx .]{CHAR}* { yylval.str = strdup(yytext); return(ID); }
 
-[0-9]+ return(INTLITERAL);
+[0-9]+ { yylval.str = strdup(yytext); return(INTLITERAL); }
 
 
 . return(0);

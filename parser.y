@@ -15,10 +15,10 @@ extern void yyerror(char *s);
     char *str; // For ID
 }
 
-%token <str> ID
+%token <str> ID INTLITERAL
 %token <size> CAPACITY
 
-%token ENDSTMT BEGINING BODY END TO MOVE ADD INPUT PRINT INTLITERAL
+%token ENDSTMT BEGINING BODY END TO MOVE ADD INPUT PRINT
 %%
 
 // program: BEGINING DECLARATIONS BODY STATEMENTS END
@@ -37,11 +37,13 @@ declaration: CAPACITY ID ENDSTMT
 assignment: MOVE ID TO ID ENDSTMT
 {
     printf("Assignment syntax is valid!\n");
+    moveIDtoID($2, $4);
 }
 
 assignment: MOVE INTLITERAL TO ID ENDSTMT
 {
     printf("Assignment syntax is valid!\n");
+    moveINTtoID($2, $4);
 }
 
 addition: ADD INTLITERAL TO ID ENDSTMT
@@ -52,6 +54,7 @@ addition: ADD INTLITERAL TO ID ENDSTMT
 addition: ADD ID TO ID ENDSTMT
 {
     printf("Addition syntax is valid!\n");
+    addIDtoID($2, $4);
 }
 
 
