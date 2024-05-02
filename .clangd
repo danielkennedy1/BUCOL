@@ -1,0 +1,4 @@
+If:
+  PathMatch: .*
+CompileFlags:
+  Add: [-I/msys64/ucrt64/include]

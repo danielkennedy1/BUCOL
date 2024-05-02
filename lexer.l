@@ -3,6 +3,7 @@
 %{
 #include "parser.tab.h" /* token definitions from the parser */
 #include <ctype.h>
+#include <string.h>
 
     //%option debug
 %}
@@ -18,7 +19,7 @@ CHAR [A-Za-z1-9-]
 "BODY." return(BODY);
 "END." return(END);
 
-^X+ return(CAPACITY);
+^X+ { yylval.size = strlen(yytext); return(CAPACITY); }
 
 "TO" return(TO);
 "MOVE" return(MOVE);
@@ -27,7 +28,7 @@ CHAR [A-Za-z1-9-]
 "PRINT" return(PRINT);
 
 [A-WYZa-wyz]{CHAR}* |
-[Xx]{CHAR}*[^Xx .]{CHAR}* return(ID);
+[Xx]{CHAR}*[^Xx .]{CHAR}* { yylval.str = strdup(yytext); return(ID); }
 
 [0-9]+ return(INTLITERAL);
 

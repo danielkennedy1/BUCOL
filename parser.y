@@ -1,11 +1,28 @@
 %{
 #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
 extern int yylex();
 extern int yyparse();
 extern void yyerror(char *s);
+
+
+void printVar(int size, char *str) {
+    printf("Size: %d\n", size);
+    printf("String: %s\n", str);
+}
 %}
 
-%token ENDSTMT BEGINING BODY END CAPACITY ID TO MOVE ADD INPUT PRINT INTLITERAL
+%union {
+    int size;
+    char *str; // For ID
+}
+
+%token <str> ID
+%token <size> CAPACITY
+
+%token ENDSTMT BEGINING BODY END TO MOVE ADD INPUT PRINT INTLITERAL
 %%
 
 // program: BEGINING DECLARATIONS BODY STATEMENTS END
@@ -17,6 +34,7 @@ statement: assignment | addition | declaration
 declaration: CAPACITY ID ENDSTMT
 {
     printf("Declaration syntax is valid!\n");
+    printVar($1, $2);
 } 
 
 // TODO: Add size checking for assignment, so store the size of the ID in the symbol table
