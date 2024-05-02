@@ -58,3 +58,15 @@ void printTable() {
     }
   }
 }
+
+
+void declareVariable(char *identifier, int size) {
+  if (lookup(identifier) != NULL) {
+    printf("Error: variable %s already declared\n", identifier);
+    return;
+  }
+  Variable *np = insert(identifier, size);
+  if (np == NULL) {
+    printf("Error: cannot insert variable %s\n", identifier);
+  }
+}

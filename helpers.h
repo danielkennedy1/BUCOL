@@ -13,3 +13,6 @@ Variable* insert(char* identifier, int size);
 
 //printTable function
 void printTable();
+
+//declareVariable function
+void declareVariable(char* identifier, int size);

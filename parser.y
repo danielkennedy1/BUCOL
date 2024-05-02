@@ -30,11 +30,9 @@ statement: assignment | addition | declaration
 declaration: CAPACITY ID ENDSTMT
 {
     printf("Declaration syntax is valid!\n");
-    insert($2, $1);
+    declareVariable($2, $1);
     printTable();
 } 
-
-// TODO: Add size checking for assignment, so store the size of the ID in the symbol table
 
 assignment: MOVE ID TO ID ENDSTMT
 {
