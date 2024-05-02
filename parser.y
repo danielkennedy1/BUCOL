@@ -31,7 +31,6 @@ declaration: CAPACITY ID ENDSTMT
 {
     printf("Declaration syntax is valid!\n");
     declareVariable($2, $1);
-    printTable();
 } 
 
 assignment: MOVE ID TO ID ENDSTMT
