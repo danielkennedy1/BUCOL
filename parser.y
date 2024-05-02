@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include "helpers.h"
+#include "src/bucol.h"
 
 extern int yylex();
 extern int yyparse();
