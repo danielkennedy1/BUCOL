@@ -1,19 +1,22 @@
 %option case-insensitive
-%option debug
-
+%option noyywrap
 %{
 #include "parser.tab.h" /* token definitions from the parser */
 #include <ctype.h>
+
+    //%option debug
 %}
 
+CHAR [A-Za-z1-9-]
+
 %%
-[ \r\n\t]* ;
+[ \r\t]* ;
 
 "." return(ENDSTMT);
 
-"BEGINING" return(BEGINING);
-"BODY" return(BODY);
-"END" return(END);
+"BEGINING." return(BEGINING);
+"BODY." return(BODY);
+"END." return(END);
 
 ^X+ return(CAPACITY);
 
@@ -23,15 +26,11 @@
 "INPUT" return(INPUT);
 "PRINT" return(PRINT);
 
-[A-WYZa-wyz][A-Za-z1-9-]* |
-[Xx][A-Za-z1-9-]*[^Xx .][A-Za-z1-9-]* return(ID);
+[A-WYZa-wyz]{CHAR}* |
+[Xx]{CHAR}*[^Xx .]{CHAR}* return(ID);
 
 [0-9]+ return(INTLITERAL);
 
 
 . return(0);
 %%
-
-int yywrap() {
-    return 1;
-}
