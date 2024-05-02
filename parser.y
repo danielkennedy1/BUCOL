@@ -2,16 +2,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include "helpers.h"
 
 extern int yylex();
 extern int yyparse();
 extern void yyerror(char *s);
 
-
-void printVar(int size, char *str) {
-    printf("Size: %d\n", size);
-    printf("String: %s\n", str);
-}
 %}
 
 %union {
