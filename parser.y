@@ -2,12 +2,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<stdbool.h>
 #include "src/bucol.h"
 
 extern int yylex();
 extern int yyparse();
 extern void yyerror(char *s);
 
+bool valid = true;
 %}
 
 %union {
@@ -22,7 +24,11 @@ extern void yyerror(char *s);
 %%
 
 program: begining declarations body statements end {
-    printf("Program syntax is valid!\n");
+    if (valid) {
+        printf("Program is well-formed!\n");
+    } else {
+        printf("Program is not well-formed!\n");
+    }
 } 
 
 declarations: declaration | declarations declaration {
@@ -43,28 +49,27 @@ statement: assignment | addition | declaration | input | print
 
 declaration: CAPACITY ID ENDSTMT
 {
-    printf("Declaration of variable %s with capacity %d\n", $2, $1);
-    declareVariable($2, $1);
+    valid = valid && declareVariable($2, $1);
 } 
 
 assignment: MOVE ID TO ID ENDSTMT
 {
-    moveIDtoID($2, $4);
+    valid = valid && moveIDtoID($2, $4);
 }
 
 assignment: MOVE INTLITERAL TO ID ENDSTMT
 {
-    moveINTtoID($2, $4);
+    valid = valid && moveINTtoID($2, $4);
 }
 
 addition: ADD INTLITERAL TO ID ENDSTMT
 {
-    addINTtoID($2, $4);
+    valid = valid && addINTtoID($2, $4);
 }
 
 addition: ADD ID TO ID ENDSTMT
 {
-    addIDtoID($2, $4);
+    valid = valid && addIDtoID($2, $4);
 }
 
 input: INPUT inputlist ENDSTMT
@@ -76,7 +81,7 @@ print: PRINT printlist ENDSTMT
 printlist: var | STRINGLITERAL | var SEP printlist | STRINGLITERAL SEP printlist
 
 var: ID {
-   checkIsDeclared($1);
+   valid = valid && checkIsDeclared($1);
    }
 %%
 
@@ -89,6 +94,8 @@ int main() {
     return 0;
 }
 
+// Syntax error handler
 void yyerror(char *s) {
+    valid = false;
     fprintf(stderr, "%s\n", s);
 }
