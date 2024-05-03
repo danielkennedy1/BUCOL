@@ -9,7 +9,7 @@
 CHAR [A-Za-z1-9-]
 
 %%
-[ \r\t]* ;
+[ \r\t\n]* ;
 
 "." return(ENDSTMT);
 ";" return(SEP);
@@ -32,5 +32,5 @@ CHAR [A-Za-z1-9-]
 [0-9]+ { yylval.str = strdup(yytext); return(INTLITERAL); }
 \"[^";.]*\" { yylval.str = strdup(yytext); return(STRINGLITERAL); }
 
-. return(0)
+. return(0);
 %%

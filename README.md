@@ -12,7 +12,10 @@ go to the root directory of the project and run the following command:
 ```bash
 make
 ```
-or, if you don't have make installed (??) (insert Stallman rant here):
+(First time having a go at make, turns out the idea for it came from trouble Steve Johnson 
+(guy who made Yacc) had with not compiling his code after fixing a bug.)
+
+or, if you don't have GNU make installed (??) (insert Stallman rant here):
 ```bash
 bison -d parser.y
 flex lexer.l
@@ -41,3 +44,24 @@ You can do every important computer operation in BUCOL, such as:
  - printing things to the screen (as long as they're numbers)
  - ending the program (if you're a quitter) 
 
+## Project Structure
+(irrelevant and intermediate files omitted for brevity)
+```
+root
+│   lexer.l - The lexer file that defines the tokens
+│   Makefile - The file that make uses to build the project
+│   parser.exe - Final executable
+│   parser.y - The parser file that defines the grammar and actions
+│   README.md - You are here
+│
+├───programs/
+│       invalid.bucol - Ill-formed BUCOL program (usage of undeclared variable)
+│       valid.bucol - Well-formed BUCOL program
+│
+└───src/
+        bucol.c - Implementation of the BUCOL language (utilizes the symbol table)
+        bucol.h - Header file for built-in BUCOL functionality
+
+        table.c - Implementation of the symbol table
+        table.h - Header file for the symbol table
+```
