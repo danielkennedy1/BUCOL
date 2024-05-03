@@ -48,6 +48,7 @@ assignment: MOVE INTLITERAL TO ID ENDSTMT
 addition: ADD INTLITERAL TO ID ENDSTMT
 {
     printf("Addition syntax is valid!\n");
+    addINTtoID($2, $4);
 }
 
 addition: ADD ID TO ID ENDSTMT
