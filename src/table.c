@@ -22,7 +22,7 @@ Variable *lookup(char *identifier) {
       printf("Found: %s at hash %d\n", identifier, hash(identifier));
       return np; // Found
 
-    }
+    } 
 
   return NULL; // Not found
 }

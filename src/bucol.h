@@ -1,3 +1,4 @@
+// TODO: change some of the return types here where appropriate
 //declareVariable function
 void declareVariable(char* identifier, int size);
 

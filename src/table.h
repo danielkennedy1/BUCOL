@@ -1,4 +1,4 @@
-// Variable struct, is a linked list
+// Variable struct, is a linked list in case of hash collision
 typedef struct Variable {
     char* identifier;
     int size;

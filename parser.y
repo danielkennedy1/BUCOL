@@ -65,7 +65,6 @@ input: INPUT inputlist ENDSTMT
 inputlist: ID SEP inputlist | ID
 {
     checkIsDeclared($1);
-    // MAYBE: take values in here from stdin
 }
 
 print: PRINT printlist ENDSTMT
@@ -73,8 +72,11 @@ print: PRINT printlist ENDSTMT
     printf("Print syntax is valid!\n");
 }
 
-printlist: ID | STRINGLITERAL | ID SEP printlist | STRINGLITERAL SEP printlist
+printlist: var | STRINGLITERAL | var SEP printlist | STRINGLITERAL SEP printlist
 
+var: ID {
+   checkIsDeclared($1);
+   }
 %%
 
 extern FILE *yyin;
