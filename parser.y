@@ -21,7 +21,7 @@ extern void yyerror(char *s);
 %token ENDSTMT BEGINING BODY END TO MOVE ADD INPUT PRINT SEP
 %%
 
-// program: BEGINING DECLARATIONS BODY STATEMENTS END
+// program: BEGINING declarations BODY STATEMENTS END
 
 program: statement | program statement
 
@@ -68,10 +68,12 @@ inputlist: ID SEP inputlist | ID
     // MAYBE: take values in here from stdin
 }
 
-print: PRINT STRINGLITERAL SEP ID ENDSTMT
+print: PRINT printlist ENDSTMT
 {
     printf("Print syntax is valid!\n");
 }
+
+printlist: ID | STRINGLITERAL | ID SEP printlist | STRINGLITERAL SEP printlist
 
 %%
 
