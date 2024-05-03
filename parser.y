@@ -15,7 +15,7 @@ extern void yyerror(char *s);
     char *str; // For ID
 }
 
-%token <str> ID INTLITERAL
+%token <str> ID INTLITERAL STRINGLITERAL
 %token <size> CAPACITY
 
 %token ENDSTMT BEGINING BODY END TO MOVE ADD INPUT PRINT SEP
@@ -25,18 +25,7 @@ extern void yyerror(char *s);
 
 program: statement | program statement
 
-statement: assignment | addition | declaration | input
-
-input: INPUT inputlist ENDSTMT
-{
-    printf("Input syntax is valid!\n");
-}
-
-inputlist: ID SEP inputlist | ID
-{
-    checkIsDeclared($1);
-    // MAYBE: take values in here from stdin
-}
+statement: assignment | addition | declaration | input | print
 
 declaration: CAPACITY ID ENDSTMT
 {
@@ -68,6 +57,21 @@ addition: ADD ID TO ID ENDSTMT
     addIDtoID($2, $4);
 }
 
+input: INPUT inputlist ENDSTMT
+{
+    printf("Input syntax is valid!\n");
+}
+
+inputlist: ID SEP inputlist | ID
+{
+    checkIsDeclared($1);
+    // MAYBE: take values in here from stdin
+}
+
+print: PRINT STRINGLITERAL SEP ID ENDSTMT
+{
+    printf("Print syntax is valid!\n");
+}
 
 %%
 

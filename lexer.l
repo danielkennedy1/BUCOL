@@ -29,9 +29,10 @@ CHAR [A-Za-z1-9-]
 "PRINT" return(PRINT);
 
 [A-WYZa-wyz]{CHAR}* |
-[Xx]{CHAR}*[^Xx .]{CHAR}* { yylval.str = strdup(yytext); return(ID); }
+[Xx]{CHAR}*[^Xx ."]{CHAR}* { yylval.str = strdup(yytext); return(ID); }
 
 [0-9]+ { yylval.str = strdup(yytext); return(INTLITERAL); }
+\"[^"]*\" { yylval.str = strdup(yytext); return(STRINGLITERAL); }
 
 
 . return(0);
