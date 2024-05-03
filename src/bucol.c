@@ -8,17 +8,20 @@
 #define MAX_INT_SIZE 12
 
 bool declareVariable(char *identifier, int size) {
+    // Previous declaration check
   if (lookup(identifier) != NULL) {
     printf("Error: variable %s already declared\n", identifier);
     return false;
   }
+  // Size check
   if (size > MAX_INT_SIZE) {
     printf("Error: variable %s size %d exceeds maximum size %d\n", identifier,
            size, MAX_INT_SIZE);
     return false;
   }
-  Variable *np = insert(identifier, size);
-  if (np == NULL) {
+  // Insert
+  Variable *newVar = insert(identifier, size);
+  if (newVar == NULL) {
     printf("Error: cannot insert variable %s\n", identifier);
     return false;
   }
@@ -111,13 +114,14 @@ bool addINTtoID(char *int_literal, char *dest_id) {
         return false;
     }
 
-    // size check
+    // size check for int_literal
     int int_literal_size = strlen(int_literal);
     if (int_literal_size > dest->size) {
         printf("Error: cannot add %s (size %d) to %s (size %d)\n", int_literal, int_literal_size, dest_id, dest->size);
         return false;
     }
-
+    
+    // Size check for new value (sum)
     int new_value = atoi(int_literal) + dest->value;
     char new_value_str[MAX_INT_SIZE];
     

@@ -4,8 +4,6 @@
 #include "parser.tab.h" /* token definitions from the parser */
 #include <ctype.h>
 #include <string.h>
-
-    //%option debug
 %}
 
 CHAR [A-Za-z1-9-]
@@ -34,6 +32,5 @@ CHAR [A-Za-z1-9-]
 [0-9]+ { yylval.str = strdup(yytext); return(INTLITERAL); }
 \"[^";.]*\" { yylval.str = strdup(yytext); return(STRINGLITERAL); }
 
-
-. return(0);
+. return(0)
 %%
