@@ -32,9 +32,7 @@ Language Syntax:
  
 
 The language is not case sensitive. - 
-Programs are monolithic starting with the keyword “BEGINING.
-” and ending with the keyword "END.
-” (The periods are important) 
+Programs are monolithic starting with the keyword “BEGINING.” and ending with the keyword "END.” (The periods are important) 
 
  
 
@@ -122,73 +120,9 @@ The print statement above prints out the string ‘I’m printed out’, followe
 
  
 
-A valid example program is as follows 
+A valid example program is in programs/valid.bucol
 
- 
-
-BEGINING. 
-
-XXX XY-1. 
-
-XXXX Y. 
-
-XXXX Z. 
-
- 
-
-BODY. 
-
-PRINT “Please enter a number? ”. 
-
-INPUT Y. 
-
- 
-
-MOVE 15 TO Z. 
-
-ADD Y TO Z. 
-
-PRINT XY-1;” + “;Y;”=”;Z. 
-
- 
-
-END. 
-
- 
-
-A invalid example program is as follows: the printed variable XY is not declared 
-
- 
-
-BEGINING. 
-
-XXX XY-1. 
-
-XXXX Y. 
-
-XXXX Z. 
-
- 
-
-BODY. 
-
-PRINT “Please enter a number? ”. 
-
-INPUT Y. 
-
- 
-
-MOVE 15 TO Z. 
-
-ADD Y TO Z. 
-
-PRINT XY;” + “;Y;”=”;Z. 
-
-
-
-END. 
-
- 
+A invalid example program is in programs/invalid.bucol: the printed variable XY is not declared 
 
 Deadlines and Marks: 
 
