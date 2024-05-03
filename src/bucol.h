@@ -12,3 +12,6 @@ void addIDtoID(char* source_id, char* dest_id);
 
 // Adds the value of source_int to dest_id->value
 void addINTtoID(char* int_literal, char* dest_id);
+
+// checks if id is declared
+void checkIsDeclared(char* id);

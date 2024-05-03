@@ -14,6 +14,7 @@ CHAR [A-Za-z1-9-]
 [ \r\t]* ;
 
 "." return(ENDSTMT);
+";" return(SEP);
 
 "BEGINING." return(BEGINING);
 "BODY." return(BODY);

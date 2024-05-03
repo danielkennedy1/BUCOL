@@ -130,3 +130,8 @@ void addINTtoID(char *int_literal, char *dest_id) {
     dest->value = new_value;
 }
 
+void checkIsDeclared(char *id) {
+    if (lookup(id) == NULL) {
+        printf("Error: variable %s not declared\n", id);
+    }
+}
