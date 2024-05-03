@@ -21,56 +21,57 @@ extern void yyerror(char *s);
 %token ENDSTMT BEGINING BODY END TO MOVE ADD INPUT PRINT SEP
 %%
 
-// program: BEGINING declarations BODY STATEMENTS END
+program: begining declarations body statements end {
+    printf("Program syntax is valid!\n");
+} 
 
-program: statement | program statement
+declarations: declaration | declarations declaration {
+    // This means there has to be at least one declaration
+}
 
-statement: assignment | addition | declaration | input | print
+begining: BEGINING ENDSTMT
+
+body: BODY ENDSTMT
+
+end: END ENDSTMT
+
+statements: statement | statements statement {
+    // This means there has to be at least one statement
+}
+
+statement: assignment | addition | declaration | input | print 
 
 declaration: CAPACITY ID ENDSTMT
 {
-    printf("Declaration syntax is valid!\n");
+    printf("Declaration of variable %s with capacity %d\n", $2, $1);
     declareVariable($2, $1);
 } 
 
 assignment: MOVE ID TO ID ENDSTMT
 {
-    printf("Assignment syntax is valid!\n");
     moveIDtoID($2, $4);
 }
 
 assignment: MOVE INTLITERAL TO ID ENDSTMT
 {
-    printf("Assignment syntax is valid!\n");
     moveINTtoID($2, $4);
 }
 
 addition: ADD INTLITERAL TO ID ENDSTMT
 {
-    printf("Addition syntax is valid!\n");
     addINTtoID($2, $4);
 }
 
 addition: ADD ID TO ID ENDSTMT
 {
-    printf("Addition syntax is valid!\n");
     addIDtoID($2, $4);
 }
 
 input: INPUT inputlist ENDSTMT
-{
-    printf("Input syntax is valid!\n");
-}
 
-inputlist: ID SEP inputlist | ID
-{
-    checkIsDeclared($1);
-}
+inputlist: var SEP inputlist | var 
 
 print: PRINT printlist ENDSTMT
-{
-    printf("Print syntax is valid!\n");
-}
 
 printlist: var | STRINGLITERAL | var SEP printlist | STRINGLITERAL SEP printlist
 

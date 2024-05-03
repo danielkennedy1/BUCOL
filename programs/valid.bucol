@@ -10,7 +10,7 @@ XXXX Z.
 
 BODY. 
 
-PRINT “Please enter a number? ”. 
+PRINT "Please enter a number? ". 
 
 INPUT Y. 
 
@@ -20,7 +20,7 @@ MOVE 15 TO Z.
 
 ADD Y TO Z. 
 
-PRINT XY-1;” + “;Y;”=”;Z. 
+PRINT XY-1;" + ";Y;"=";Z. 
 
  
 

@@ -19,7 +19,6 @@ Variable *lookup(char *identifier) {
   for (np = variableTable[hash(identifier)]; np != NULL;
        np = np->next) // Traverse the linked list
     if (strcmp(identifier, np->identifier) == 0) {
-      printf("Found: %s at hash %d\n", identifier, hash(identifier));
       return np; // Found
 
     } 

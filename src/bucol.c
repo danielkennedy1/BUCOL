@@ -99,6 +99,7 @@ void addIDtoID(char *source_id, char *dest_id) {
     printf("Adding value %d from %s to %s, new value: %d\n", source->value, source->identifier, dest->identifier, new_value);
     dest->value = new_value;
 }
+
 void addINTtoID(char *int_literal, char *dest_id) {
     Variable *dest = lookup(dest_id);
     
