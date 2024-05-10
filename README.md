@@ -5,44 +5,54 @@
 ## Overview
 
 This project is an implementation of the BUCOL programming language. 
-BUCOL is a powerful, high-level programming language that is way better than C or even HTML.
 
 ## Build Instructions
-go to the root directory of the project and run the following command:
+Go to the root directory of the project and run the following command:
 ```bash
 make
 ```
-(First time having a go at make, turns out the idea for it came from trouble Steve Johnson 
-(guy who made Yacc) had with not compiling his code after fixing a bug.)
 
-or, if you don't have GNU make installed (??) (insert Stallman rant here):
+Or, if you don't have GNU make installed:
+
 ```bash
 bison -d parser.y
 flex lexer.l
-gcc -o parser parser.tab.c lex.yy.c src/*.c src/*.h
+gcc -o parser parser.tab.c lex.yy.c src/*
 ```
 
 ## Usage
-throw this in them there terminal:
+The above will create an executable called `parser`. You can run it by typing:
 ```
 ./parser
 ```
-and if you want to shove a file in there:
+
+And then typing your BUCOL code into the terminal. 
+
+You can also run it with a file as input like so:
+
 ```
 ./parser < filename
 ```
-(I have to do this differently because of ms PowerShell, but you can do it like this on Linux or Mac.
-I'm not sure about Windows Command Prompt. I won't test it because I don't want to. I'm not your babysitter.)
+(Note that this step can be different depending on your OS and shell)
 
 ## Features
-You can do every important computer operation in BUCOL, such as:
- - declaring variables (as long as they're numbers and are 12 or less digits) 
-    - you've to do this at the top of the file if you know what's good for you
- - assigning values to variables (again, they would want to be numbers)
- - adding numbers together
- - getting user input (as long as it's a number)
- - printing things to the screen (as long as they're numbers)
- - ending the program (if you're a quitter) 
+ - Variable declaration (Integers only, 12 or less digits): `XXX myNumber.`
+    - Checks for previous declaration, and invalid names (xx, or .a;, etc.)
+
+ - Variable assignmment: `MOVE 5 TO myNumber.`
+    - Checks for declaration, and size validity (if a is size 2 [`XX a.`], then MOVE 1234 TO a. is invalid)
+    - Equally, if b is size 3 [`XXX b.`], then `MOVE b TO a.` is invalid
+
+ - Literal to variable addition and variable to variable addition: `ADD 5 TO myNumber.` `ADD myNumber TO myNumber.`
+    - Checks for declaration, and size validity same as MOVE done on the addition result before assignment
+
+ - User input statements: `INPUT myNumber1; myNumber2.`
+    - Checks for declaration, arbitrary size of list > 1
+
+ - Print statements: `PRINT myNumber1; myNumber2; "String literals also";.`
+    - Checks for declaration, arbitrary size of list > 1 same as INPUT
+
+Note: The parser classifies programs that fail any of the above static checks as invalid, so the program may still be syntactically correct, but in this case the parser will return that it is "not well-formed."
 
 ## Project Structure
 (irrelevant and intermediate files omitted for brevity)
@@ -50,7 +60,6 @@ You can do every important computer operation in BUCOL, such as:
 root
 │   lexer.l - The lexer file that defines the tokens
 │   Makefile - The file that make uses to build the project
-│   parser.exe - Final executable
 │   parser.y - The parser file that defines the grammar and actions
 │   README.md - You are here
 │
@@ -59,7 +68,7 @@ root
 │       valid.bucol - Well-formed BUCOL program
 │
 └───src/
-        bucol.c - Implementation of the BUCOL language (utilizes the symbol table)
+        bucol.c - Implementation of the BUCOL language for parser actions (utilizes the symbol table)
         bucol.h - Header file for built-in BUCOL functionality
 
         table.c - Implementation of the symbol table
